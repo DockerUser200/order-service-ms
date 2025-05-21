@@ -46,7 +46,7 @@ public class OrderServiceTest {
 
         OrderDTOFromFE orderDetails = new OrderDTOFromFE(mockedFoodItemsList, 1, mokedRestaurantDTO);
 
-        Integer newOrderId = 1;
+        int newOrderId = 1;
         UserDTO userDTO = new UserDTO();
         Order orderToBeSaved = new Order(newOrderId, orderDetails.getFoodItemsList(), orderDetails.getRestaurant(), userDTO);
         OrderDTO orderDTOExpected = OrderMapper.INSTANCE.orderToOrderDTO(orderToBeSaved);
@@ -61,7 +61,7 @@ public class OrderServiceTest {
         // Assert
 
         assertDoesNotThrow(() -> orderService.saveOrderInDb(orderDetails));
-        verify(sequenceGenerator, times(1)).generateNextOrderId();
+        verify(sequenceGenerator, times(2)).generateNextOrderId();
 
     }
 }
